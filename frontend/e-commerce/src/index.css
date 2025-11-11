@@ -107,11 +107,10 @@ code {
   margin-left: 1rem 0;
 }
 
-.footer {
-  /* width: 50%; */
-  margin: 4rem auto;
+.footer-content {
+  margin: auto;
   text-align: center;
-  /* display: flex; */
+  font-weight: bold;
 }
 
 .product-list-container {
@@ -166,6 +165,111 @@ code {
   flex-direction: column;
   align-items: flex-start;
 }
-/* .nomad-btn {
+
+.nomad-btn {
+  margin: 5px 5px;
+  width: 100%;
+  padding: 5px;
   border: 2px solid black;
-} */
+}
+
+.is-black {
+  background-color: black;
+}
+
+.text {
+  color: white;
+}
+
+.layout {
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* full viewport height */
+}
+
+.header {
+  height: 10%;
+  background-color: #f5f5f5; /* optional */
+}
+
+.main-content {
+  height: 80%;
+  overflow-y: auto; /* allows scroll if content is long */
+  background-color: #fff; /* optional */
+}
+
+.footer {
+  height: 10%;
+  width: 100%;
+  background-color: #f5f5f5; /* optional */
+}
+
+
+.cart-item {
+  text-align: center;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  border:  1px solid grey;
+  margin: 1rem;
+  padding:  1rem;
+  .item-image {
+    img {
+      width: 200px;
+    } 
+  }
+  .name-price {
+    h4 {
+      margin: 0;
+    }
+    p {
+      font-size:  1rem;
+      font-weight: normal;
+    }
+  }
+  .btns-container {
+    button {
+      border: none;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      font-size:  10px;
+      margin-right: 5px;
+    }
+    .btn-increase {
+      color: white;
+      background-color:  black;
+    }
+    .btn-decrease, .btn-trash {
+      color: white;
+      background-color: #d9534f;
+    }
+  }
+}
+.total-container {
+  margin: 1rem;
+  text-align: center;
+}
+@media(min-width: 1024px) {
+  .cart-page {
+    display: flex;
+    justify-content: center;
+    .total-container {
+      text-align: center;
+    }
+  }
+  .cart-item {
+    display: flex;
+    justify-content: center;
+    div {
+      margin: 1rem
+    }
+    .name-price {
+      width: 200px;
+    }
+  }
+}
+
+.empty-cart {
+  text-align: center;
+}
+

@@ -1,10 +1,13 @@
 import React, {useContext, useState, useEffect} from 'react'
 import { ProductsContext } from '../../context/products-context'
+import { CartContext } from '../../context/cart-context'
 import Layout from '../shared/layout'
 import { useParams, useNavigate } from 'react-router'
+import { isInCart } from '../../helpers';
 
 function SingleProduct() {
     const {products} = useContext(ProductsContext)
+    const {addProduct, increaseProductCount, cartItems} = useContext(CartContext)
     const {id} = useParams()
     const [product, setProduct] = useState(null)
     const navigate = useNavigate()
@@ -17,11 +20,11 @@ function SingleProduct() {
             setProduct(product)
             setLoading(false)
         }
-    })
+    }, [products, id, navigate])
     if (loading) return <div></div>
     const {imageUrl, title, price, description} = product
   return (
-    <div>
+    <div className='single-cart-container'>
         <Layout>
             <div className='single-product-container'>
                 <div className='product-image'>
@@ -33,11 +36,18 @@ function SingleProduct() {
                         <p>{price}</p>
                     </div>
                     <div className='add-to-cart-btns'>
-                        <button className='button is-blue nomad-btn'>
-                            ADD TO CART
+                        { !isInCart(product, cartItems) &&
+                        <button className='nomad-btn is-black' onClick={() => addProduct(product)} >
+                            <div className='text'>ADD TO CART</div>
                         </button>
-                        <button className='button is-black nomad-btn'>
-                            PROCEED TO CHECKOUT
+                        }
+                        { isInCart(product, cartItems) &&
+                        <button className='nomad-btn' onClick={() => increaseProductCount(product)}>
+                            ADD MORE
+                        </button>
+                        }
+                        <button className='is-black nomad-btn'>
+                            <div className='text'>PROCEED TO CHECKOUT</div>
                         </button>
                     </div>
                     <div className='product-description'>

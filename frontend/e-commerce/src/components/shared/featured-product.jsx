@@ -1,10 +1,13 @@
-import React from 'react'
+// import React from 'react'
 import { useNavigate } from 'react-router-dom';
-
-
-function FeaturedProduct(product) {
-    const { id, title, description, imageUrl, price} = product
+import { isInCart } from '../../helpers';
+import { CartContext } from '../../context/cart-context';
+import { useContext } from 'react';
+function FeaturedProduct(props) {
+    const { id, title, description, imageUrl, price} = props
+    const product = {title, imageUrl, price, id, description}
     const navigate = useNavigate()
+    const {addProduct,increaseProductCount, cartItems} = useContext(CartContext)
   return (
     <div className='featured-product'>
         <div className='featured-image' onClick={() => navigate(`/product/${id}`)}>
@@ -13,9 +16,19 @@ function FeaturedProduct(product) {
         <div className='name-price'>
             <h3>{title}</h3>
             <p>{price}</p>
-            <button className='button is-black nomad-btn' onClick={() => console.log("product added to the cart...")}>
-                ADD TO CART
-            </button>
+            {
+                !isInCart(product, cartItems) &&
+                <button className='is-black nomad-btn' onClick={() => addProduct(product)}>
+                    <div className='text'>ADD TO CART</div>
+                </button>
+            }
+            {
+                isInCart(product, cartItems) &&
+                <button className='nomad-btn' onClick={() => increaseProductCount(product)}>
+                    ADD More
+                </button>
+            }
+
         </div>
     </div>
   )

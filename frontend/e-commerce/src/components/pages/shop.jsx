@@ -8,7 +8,8 @@ function Shop() {
         <FeaturedProduct {...product} key={product.id} />
     ))
   return (
-    
+    <>
+    <Layout>
     <div className='product-list-container'>
         <h2 className='product-list-title'>Shop</h2>
         <div className='product-list'>
@@ -17,6 +18,8 @@ function Shop() {
             }
         </div>
     </div>
+    </Layout>
+    </>
   )
 }
 

@@ -9,7 +9,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bulma/css/bulma.min.css';
 
 import ProductsContextProvider from './context/products-context';
-
+import CartContextProvider from './context/cart-context';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -17,7 +17,9 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 <BrowserRouter> 
 <ProductsContextProvider>
+  <CartContextProvider>
     <App />
+  </CartContextProvider>
 </ProductsContextProvider>
 </BrowserRouter>
 
