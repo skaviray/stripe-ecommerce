@@ -6,19 +6,23 @@ import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from 'react-router'
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bulma/css/bulma.min.css';
+// import 'bulma/css/bulma.min.css';
+import {Elements} from '@stripe/react-stripe-js'
+import { loadStripe } from '@stripe/stripe-js';
 
 import ProductsContextProvider from './context/products-context';
 import CartContextProvider from './context/cart-context';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-
+const stripePromise = loadStripe(process.env.REACT_APP_PUBLISHABLE_KEY)
 
 root.render(
 <BrowserRouter> 
 <ProductsContextProvider>
   <CartContextProvider>
-    <App />
+    <Elements stripe={stripePromise}>
+      <App />
+    </Elements>
   </CartContextProvider>
 </ProductsContextProvider>
 </BrowserRouter>
